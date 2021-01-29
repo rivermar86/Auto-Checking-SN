@@ -1,3 +1,7 @@
+#Marco A. Razo
+#Program to automate SN check proccess
+#01/2021
+
 from selenium import webdriver
 import time
 from tkinter import *
