@@ -18,11 +18,11 @@ imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/Autom
 def theWindow():
     global lstBox, textArea
     myWin.geometry('376x380')
-    textArea.config(font=('Consolas',17))
+    textArea.config(font=('Consolas',25))
     btnDone = Button(myWin, text='Process', command=autoChecking)
    
     imgFrame = Label(myWin,image=imgtitle)
-    labQty = Label(myWin,text='Qty:')
+    labQty = Label(myWin,text='QYT:')
     lstBox = ttk.Combobox(myWin, width=10,height=12,state='readonly')
     lstBox.set('1')
     lstBox['value'] = ['1','2','3','4','5','6','7','8','9','10']
