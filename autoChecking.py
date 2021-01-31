@@ -4,7 +4,7 @@
 
 from selenium import webdriver
 import time
-#from tkinter import *
+from tkinter import *
 from tkinter import ttk
 import tkinter.messagebox 
 
