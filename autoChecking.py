@@ -18,11 +18,11 @@ imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/Autom
 def theWindow():
     global lstBox, textArea
     myWin.geometry('376x380')
-    textArea.config(font=('Consolas',25))
+    textArea.config(font=('Consolas',17))
     btnDone = Button(myWin, text='Process', command=autoChecking)
    
     imgFrame = Label(myWin,image=imgtitle)
-    labQty = Label(myWin,text='QYT:')
+    labQty = Label(myWin,text='Qty:')
     lstBox = ttk.Combobox(myWin, width=10,height=12,state='readonly')
     lstBox.set('1')
     lstBox['value'] = ['1','2','3','4','5','6','7','8','9','10']
@@ -60,7 +60,6 @@ def autoChecking():
 
     btnLogin = driver.find_element_by_name('button')
     btnLogin.click()
-    #time.sleep(2)
     
     driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
     driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[2]/iframe"))
@@ -98,8 +97,8 @@ def autoChecking():
             tag.append(result)                                      #save tag result in the list
             screen.append(str(dataList[x] + '  - ' ) + str(tag[x])) #do a variable with spaces to print when for done
         except:
-            #if SN haven't info
-            tag.append('No Data')                                      #save tag result in the list
+                                                                    #if SN haven't info
+            tag.append('No Data')                                   #save tag result in the list
             screen.append(str(dataList[x] + '  - ' ) + str(tag[x]))
             pass
         #return to first frame to can get the PPID
