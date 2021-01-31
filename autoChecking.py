@@ -39,7 +39,7 @@ def selection_changed(event):
     textArea.delete(1.0,END)
     textArea.focus()
     
-def autoChecking(): 
+def autoChecking():
     selection = int(lstBox.get())
     dataText = textArea.get(1.0, END)  #get all values from textArea
     dataList = dataText.split()        #convert String to List
@@ -60,7 +60,6 @@ def autoChecking():
 
     btnLogin = driver.find_element_by_name('button')
     btnLogin.click()
-    #time.sleep(2)
     
     driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
     driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[2]/iframe"))
@@ -98,8 +97,8 @@ def autoChecking():
             tag.append(result)                                      #save tag result in the list
             screen.append(str(dataList[x] + '  - ' ) + str(tag[x])) #do a variable with spaces to print when for done
         except:
-            #if SN haven't info
-            tag.append('No Data')                                      #save tag result in the list
+                                                                    #if SN haven't info
+            tag.append('No Data')                                   #save tag result in the list
             screen.append(str(dataList[x] + '  - ' ) + str(tag[x]))
             pass
         #return to first frame to can get the PPID
