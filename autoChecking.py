@@ -4,7 +4,7 @@
 
 from selenium import webdriver
 import time
-from tkinter import *
+#from tkinter import *
 from tkinter import ttk
 import tkinter.messagebox 
 
@@ -39,7 +39,7 @@ def selection_changed(event):
     textArea.delete(1.0,END)
     textArea.focus()
     
-def autoChecking():
+def autoChecking(): 
     selection = int(lstBox.get())
     dataText = textArea.get(1.0, END)  #get all values from textArea
     dataList = dataText.split()        #convert String to List
