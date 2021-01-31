@@ -9,17 +9,15 @@ from tkinter import ttk
 import tkinter.messagebox 
 
 myWin = Tk()
-textArea = Text(myWin, width='18', height='10')
-#driver = webdriver.Chrome('C:\\Users\\MarcoA_Rivera.FOX-GDL\\Desktop\\Python\\AutomateCheking\\chromedriver.exe')
-driver = webdriver.Chrome('.exe\\selenium\\webdriver')
-#imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/AutomateCheking/Title.gif")
-imgtitle = PhotoImage(file=r".gif\\Title.gif")
-
-lblProg = Label(myWin, text = 'Wait pls')
+textArea = Text(myWin, width='18', height='11')
+driver = webdriver.Chrome('C:\\Users\\MarcoA_Rivera.FOX-GDL\\Desktop\\Python\\AutomateCheking\\chromedriver.exe')
+#driver = webdriver.Chrome('.exe\\selenium\\webdriver')
+imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/AutomateCheking/Title.gif")
+#imgtitle = PhotoImage(file=r".gif\\Title.gif")
 
 def theWindow():
     global lstBox, textArea
-    myWin.geometry('376x359')
+    myWin.geometry('376x380')
     textArea.config(font=('Consolas',17))
     btnDone = Button(myWin, text='Process', command=autoChecking)
    
@@ -39,7 +37,8 @@ def theWindow():
 
 def selection_changed(event):
     textArea.delete(1.0,END)
-
+    textArea.focus()
+    
 def autoChecking():
     selection = int(lstBox.get())
     dataText = textArea.get(1.0, END)  #get all values from textArea
