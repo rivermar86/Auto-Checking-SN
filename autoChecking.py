@@ -10,9 +10,11 @@ import tkinter.messagebox
 
 myWin = Tk()
 textArea = Text(myWin, width='18', height='11')
-driver = webdriver.Chrome('C:\\Users\\MarcoA_Rivera.FOX-GDL\\Desktop\\Python\\AutomateCheking\\chromedriver.exe')
+driver = webdriver.Chrome('C:\\Users\\MarcoA_Rivera.FOX-GDL\\Desktop\\Python'\
+                            '\\AutomateCheking\\chromedriver.exe')
 #driver = webdriver.Chrome('.exe\\selenium\\webdriver')
-imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/AutomateCheking/Title.gif")
+imgtitle = PhotoImage(file=r"C:/Users/MarcoA_Rivera.FOX-GDL/Desktop/Python/"\
+                           r"AutomateCheking/Title.gif")
 #imgtitle = PhotoImage(file=r".gif\\Title.gif")
 
 def theWindow():
@@ -39,6 +41,12 @@ def selection_changed(event):
     textArea.delete(1.0,END)
     textArea.focus()
     
+def switch_frame():
+    driver.switch_to_default_content()
+    driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
+    driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/"\
+                           "tbody/tr/td[3]/iframe"))
+
 def autoChecking():
     selection = int(lstBox.get())
     dataText = textArea.get(1.0, END)  #get all values from textArea
@@ -48,7 +56,7 @@ def autoChecking():
     try:
         driver.get('http://10.12.176.30:8080/GDLSFC/index.html')
     except:
-        driver.execute_script("alert('Page not found, check the Internet Connection')")
+        driver.execute_script("alert('Page not found, check the Connection')")
         time.sleep(14)
         pass
    
@@ -62,7 +70,8 @@ def autoChecking():
     btnLogin.click()
     
     driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
-    driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[2]/iframe"))
+    driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table"\
+                           "/tbody/tr/td[2]/iframe"))
 
     x=driver.find_element_by_xpath("/html/body/div[2]/div[1]/a[2]")
     x.click()
@@ -71,10 +80,9 @@ def autoChecking():
     y.click()
 
     #return again to switch to another frame
-    driver.switch_to_default_content()
-    driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
-    driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[3]/iframe"))
-    driver.switch_to_frame(driver.find_element_by_xpath('/html/frameset/frame[1]'))  
+    switch_frame()
+    driver.switch_to_frame(driver.find_element_by_xpath(
+                           '/html/frameset/frame[1]'))  
     tag=[]
     screen =[]
     
@@ -88,28 +96,28 @@ def autoChecking():
         time.sleep(6.8)
         btnSN = driver.find_element_by_name('PPID').clear()
         
-        driver.switch_to_default_content()
-        driver.switch_to_frame(driver.find_element_by_name("contentFrame"))    
-        driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[3]/iframe"))
-        driver.switch_to_frame(driver.find_element_by_xpath('/html/frameset/frame[2]'))
+        switch_frame()
+        driver.switch_to_frame(driver.find_element_by_xpath(
+                               '/html/frameset/frame[2]'))
+        
         try:
-            result = driver.find_element_by_xpath('/html/body/table[1]/tbody/tr[4]/td[3]/b/font').text
-            tag.append(result)                                      #save tag result in the list
-            screen.append(str(dataList[x] + '  - ' ) + str(tag[x])) #do a variable with spaces to print when for done
+            result = driver.find_element_by_xpath(
+                          '/html/body/table[1]/tbody/tr[4]/td[3]/b/font').text
+            tag.append(result)      #save tag result in the list
+            screen.append(str(dataList[x] + '  - ' ) + str(tag[x])) 
+                             #do a variable with spaces to print when for done
         except:
-                                                                    #if SN haven't info
-            tag.append('No Data')                                   #save tag result in the list
+                                                     #if SN haven't info
+            tag.append('No Data')                    #save tag result in the list
             screen.append(str(dataList[x] + '  - ' ) + str(tag[x]))
             pass
         #return to first frame to can get the PPID
-        driver.switch_to_default_content()
-        driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
-        driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[3]/iframe"))
-        driver.switch_to_frame(driver.find_element_by_xpath('/html/frameset/frame[1]')) 
+        switch_frame()
+        driver.switch_to_frame(driver.find_element_by_xpath(
+                               '/html/frameset/frame[1]')) 
        
     screen = '\n\n'.join(screen)  
     tkinter.messagebox.showinfo(' * RESULT *',screen)
-    #driver.switch_to_frame(driver.find_element_by_name("contentFrame"))
-    #driver.switch_to_frame(driver.find_element_by_xpath("/html/body/table/tbody/tr/td[2]/iframe"))
+
 myWin = theWindow()
 myWin.mainloop()
